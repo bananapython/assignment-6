@@ -31,13 +31,18 @@ class CircularList(object):
   # Find the Link with the given data (value)
   # or return None if the data is not there
     def find ( self, data ):
+        count = 0
         current=self.first
         if current==None:
             return None
     
-        while current.data!=data:
-            current=current.next
-        return current
+        while count != self.size:
+            if current.data == data:
+                return current
+            current = current.next
+            count += 1
+
+        return None
     
   # Delete a Link with a given data (value) and return the Link
   # or return None if the data is not there
