@@ -9,6 +9,7 @@ class CircularList(object):
   # Constructor
     def __init__ ( self ):
         self.first=None
+        self.size = 0
 
   # Insert an element (value) in the list
     def insert ( self, data ):
@@ -34,9 +35,13 @@ class CircularList(object):
         if current==None:
             return None
     
-        while current.data!=data:
-            current=current.next
-        return current
+        while count != self.size:
+            if current.data == data:
+                return current
+            current = current.next
+            count += 1
+        
+        return None
     
   # Delete a Link with a given data (value) and return the Link
   # or return None if the data is not there
@@ -58,7 +63,7 @@ class CircularList(object):
         else:
             previous.next = current.next
 
-
+        self.size -= 1
         return current
     
   # Delete the nth Link starting from the Link start
@@ -78,7 +83,8 @@ class CircularList(object):
             self.first = self.first.next
         else:
             previous.next = current.next
-
+        
+        self.size -= 1
         return current, current.next
     
   # Return a string representation of a Circular List
