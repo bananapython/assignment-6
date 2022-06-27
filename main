@@ -54,7 +54,7 @@ class CircularList(object):
         count = 0
         current = self.first
         previous = self.first
-
+        
         while count != self.size and current.data != data:
             previous = current
             current = current.next
@@ -63,12 +63,14 @@ class CircularList(object):
         if count == self.size:
             return None
 
-        if current == self.first:
+        if self.size == 1 and current == self.first:
+            self.first = None
+        elif current == self.first:
             self.first = self.first.next
         else:
             previous.next = current.next
 
-
+        self.size -= 1
         return current
     
   # Delete the nth Link starting from the Link start
