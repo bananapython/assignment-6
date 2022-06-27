@@ -120,9 +120,9 @@ def main():
         circle.insert(name)
         name+=1
         
-    start=1    
+    start=start_count    
     for i in range(num_soldiers-1):
-        data,start=delete_after(start,n)
+        data,start=circle.delete_after(start,elim_num)
         print(data)
         
         #delete from starting link. ending link becomes new starting link
