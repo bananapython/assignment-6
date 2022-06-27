@@ -35,13 +35,9 @@ class CircularList(object):
         if current==None:
             return None
     
-        while count != self.size:
-            if current.data == data:
-                return current
-            current = current.next
-            count += 1
-        
-        return None
+        while current.data!=data:
+            current=current.next
+        return current
     
   # Delete a Link with a given data (value) and return the Link
   # or return None if the data is not there
@@ -63,7 +59,7 @@ class CircularList(object):
         else:
             previous.next = current.next
 
-        self.size -= 1
+
         return current
     
   # Delete the nth Link starting from the Link start
@@ -83,8 +79,7 @@ class CircularList(object):
             self.first = self.first.next
         else:
             previous.next = current.next
-        
-        self.size -= 1
+
         return current, current.next
     
   # Return a string representation of a Circular List
@@ -125,8 +120,11 @@ def main():
         circle.insert(name)
         name+=1
         
+    start=1    
     for i in range(num_soldiers-1):
-        pass
+        data,start=delete_after(start,n)
+        print(data)
+        
         #delete from starting link. ending link becomes new starting link
         #print out eliminated soldier
 
