@@ -11,35 +11,97 @@ class CircularList(object):
         self.head=None
 
   # Insert an element (value) in the list
-  def insert ( self, data ):
-        pass
+  def insert( self, data ):
+        newLink = Link(data)
+        newLink.next = self.first
+        current = self.first
+        
+        if current == None:
+            self.first = newLink
+            self.size += 1
+            return
+        
+        while current.next != self.first:
+            current = current.next
+        
+        current.next = newLink
+        self.size += 1
+  
+  
+  
+  
+    
+        
 
   # Find the Link with the given data (value)
   # or return None if the data is not there
   def find ( self, data ):
-    current=self.head
-    if current==None:
-        return None
-    
-    while current.data!=data:
-        current=current.next
-    return current
+        current=self.head
+        if current==None:
+            return None
+
+        while current.data!=data:
+            current=current.next
+        return current
 
   # Delete a Link with a given data (value) and return the Link
   # or return None if the data is not there
   def delete ( self, data ):
+        count = 0
+        current = self.first
+        previous = self.first
+        
+        while count != self.size and current.data != data:
+            previous = current
+            current = current.next
+            count += 1
+        
+        if count == self.size:
+            return None
+        
+        if current == self.first:
+            self.first = self.first.next
+        else:
+            previous.next = current.next
+            
+        
+        return current
     
 
   # Delete the nth Link starting from the Link start
   # Return the data of the deleted Link AND return the
   # next Link after the deleted Link in that order
   def delete_after ( self, start, n ):
+        count = 0
+        current = self.first
+        previous = self.first
+        
+        while count != n:
+            previous = current
+            current = current.next
+            count += 1
+        
+        if current == self.first:
+            self.first = self.first.next
+        else:
+            previous.next = current.next
+        
+        return current, current.next
 
   # Return a string representation of a Circular List
   # The format of the string will be the same as the __str__
   # format for normal Python lists
   def __str__ ( self ):
-    pass
+        data = []
+        current = self.first
+        count = 0
+        while count != self.size:
+            data.append(current.data)
+            current = current.next
+            count += 1
+        
+        return str(data)
+    
 
 def main():
   # read number of soldiers
